@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:CS113/Assets/Scripts/SpeedShootCrosshair.cs.meta
-guid: 17ca221707320e844b54329093236006
-=======
-guid: 4d3d9ce6ecb26df43b87753dd07448eb
->>>>>>> main:CS113/Assets/Inputs/CS113.cs.meta
+guid: d28ae673dcaf9484a883f29d20ff98ef
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
