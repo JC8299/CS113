@@ -35,12 +35,12 @@ public class SnowboardGate : MonoBehaviour
         {
             if (passed)
             {
-                Destroy(this);
+                Destroy(gameObject);
             }
             else
             {
                 Debug.Log("Failed gate");
-                Destroy(this);
+                Destroy(gameObject);
             }
         }
     }
