@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gate: {fileID: 8659730349961280642, guid: 46cd2920e6c8f3745a0406ad8924a92a, type: 3}
-  setSpeed: 5
+  setSpeed: 10
   readyToSpawn: 1
   spawnCooldown: 3
 --- !u!212 &787521810
