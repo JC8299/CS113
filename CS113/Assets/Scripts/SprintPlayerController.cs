@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SprintPlayerController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class SprintPlayerController : MonoBehaviour
     public bool bFinished;      //crossed finish line
 
     private Rigidbody2D rb;
-    private KeyCode moveKey;
+    private bool bMoveKeyPressed;
     private bool bMovement;
     private float timeNow;
     private float timeLastPressed;
@@ -23,7 +24,7 @@ public class SprintPlayerController : MonoBehaviour
         timeNow = Time.time;
         timeLastPressed = Time.time;
         bMovement = false;
-        moveKey = KeyCode.X;
+        bMoveKeyPressed = false;
         bFinished = false;
     }
 
@@ -32,10 +33,11 @@ public class SprintPlayerController : MonoBehaviour
     {
         if (!bFinished)
         {
-            if (Input.GetKeyDown(moveKey))
+            if ((Keyboard.current.xKey.isPressed && !bMoveKeyPressed) ||
+                (Keyboard.current.cKey.isPressed && bMoveKeyPressed))
             {
-                if (moveKey == KeyCode.X) moveKey = KeyCode.C;
-                else moveKey = KeyCode.X;
+                if (bMoveKeyPressed) bMoveKeyPressed = false;
+                else bMoveKeyPressed = true;
 
                 bMovement = true;
                 timeNow = Time.time;
@@ -59,7 +61,7 @@ public class SprintPlayerController : MonoBehaviour
                     horizontalAccel = horizontalAccel * moveAccel * Time.fixedDeltaTime;
                     if (horizontalAccel > accelLimit) horizontalAccel = accelLimit;
                     rb.AddForce(new Vector2(horizontalAccel, 0), ForceMode2D.Impulse);
-                    Debug.Log(horizontalAccel);
+                    //Debug.Log(horizontalAccel);
                 }
             }
             bMovement = false;
