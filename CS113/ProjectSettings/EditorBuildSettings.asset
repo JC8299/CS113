@@ -4,7 +4,31 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: c239a218b695e1441bd674b7bd3aee55
+  - enabled: 1
+    path: Assets/Scenes/GameSelect.unity
+    guid: e33c569bfa5e9a843bb158bbd414b1b3
+  - enabled: 1
+    path: Assets/Scenes/Basketball.unity
+    guid: ee5f4defbd422014b8416f25fff05ca1
+  - enabled: 1
+    path: Assets/Scenes/Longjump.unity
+    guid: c21c3c20a37b70b4a9783536e8cbece8
+  - enabled: 1
+    path: Assets/Scenes/Snowboard.unity
+    guid: a124b8424815f7a4d9da28bc12309e54
+  - enabled: 1
+    path: Assets/Scenes/SpeedShoot.unity
+    guid: a17328334cb7e7745941c644a5ac447d
+  - enabled: 1
+    path: Assets/Scenes/Sprinting.unity
+    guid: d4c6b5a378de35e42bbc9dd07f4b858a
+  - enabled: 1
+    path: Assets/Scenes/TableTennis.unity
+    guid: 74c0cdd3c35bad240965beae83a4d025
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4fa6da08dbd52fe4c9f9e8eb19a74320,
       type: 2}

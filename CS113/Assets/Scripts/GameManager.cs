@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance {get; private set;}
+    public SceneControl sc;
 
     public int lifesMax;
     public int lifesLeft;
@@ -47,6 +48,15 @@ public class GameManager : MonoBehaviour
         {
             nextMinigame = minigamesList[Random.Range(0, minigamesList.Count)];
         }
-        SceneManager.LoadScene(nextMinigame);
+        sc.SpecificScene(nextMinigame);
+    }
+
+    public void StartGame()
+    {
+        lifesLeft = lifesMax;
+        minigamesCompleted = 0;
+
+        string nextMinigame = minigamesList[Random.Range(0, minigamesList.Count)];
+        sc.SpecificScene(nextMinigame);
     }
 }
