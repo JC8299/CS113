@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int lifesMax;
     public int lifesLeft;
 
+    public string gameTransition;
     public int minigamesCompleted;
     public List<string> minigamesList;
 
@@ -48,15 +49,6 @@ public class GameManager : MonoBehaviour
         {
             nextMinigame = minigamesList[Random.Range(0, minigamesList.Count)];
         }
-        sc.SpecificScene(nextMinigame);
-    }
-
-    public void StartGame()
-    {
-        lifesLeft = lifesMax;
-        minigamesCompleted = 0;
-
-        string nextMinigame = minigamesList[Random.Range(0, minigamesList.Count)];
         sc.SpecificScene(nextMinigame);
     }
 }

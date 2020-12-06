@@ -877,6 +877,7 @@ MonoBehaviour:
   sc: {fileID: 6538469128484382571}
   lifesMax: 3
   lifesLeft: 3
+  gameTransition: 
   minigamesCompleted: 0
   minigamesList:
   - Basketball
@@ -884,7 +885,7 @@ MonoBehaviour:
   - Snowboard
   - SpeedShoot
   - Sprinting
-  - TableTennis
+  - Soccer Goalie
 --- !u!4 &432537262
 Transform:
   m_ObjectHideFlags: 0
@@ -1636,7 +1637,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 432537261}
+      - m_Target: {fileID: 6538469128484382571}
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -2316,7 +2317,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6538469128484382571}
         m_MethodName: SpecificScene
         m_Mode: 5
         m_Arguments:
