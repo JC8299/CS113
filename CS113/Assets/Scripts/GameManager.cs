@@ -27,11 +27,19 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        if (!PlayerPrefs.HasKey("Volume"))
+        {
+            PlayerPrefs.SetFloat("Volume", .7f);
+        }
     }
 
     void Update()
     {
-        
+        if (sc == null)
+        {
+            sc = GameObject.Find("Transition").GetComponent<SceneControl>();
+        }
     }
 
     //call when minigame is done

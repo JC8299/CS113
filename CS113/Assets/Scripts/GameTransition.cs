@@ -46,7 +46,7 @@ public class GameTransition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && !changingScene)
+        if (!sc.gamePaused && Keyboard.current.spaceKey.wasPressedThisFrame && !changingScene)
         {
             changingScene = true;
             transition();
