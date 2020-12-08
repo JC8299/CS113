@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance {get; private set;}
+    public SceneControl sc;
 
     public int lifesMax;
     public int lifesLeft;
 
+    public string gameTransition;
     public int minigamesCompleted;
     public List<string> minigamesList;
 
@@ -25,11 +27,19 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        if (!PlayerPrefs.HasKey("Volume"))
+        {
+            PlayerPrefs.SetFloat("Volume", .7f);
+        }
     }
 
     void Update()
     {
-        
+        if (sc == null)
+        {
+            sc = GameObject.Find("Transition").GetComponent<SceneControl>();
+        }
     }
 
     //call when minigame is done
@@ -47,6 +57,6 @@ public class GameManager : MonoBehaviour
         {
             nextMinigame = minigamesList[Random.Range(0, minigamesList.Count)];
         }
-        SceneManager.LoadScene(nextMinigame);
+        sc.SpecificScene(nextMinigame);
     }
 }
