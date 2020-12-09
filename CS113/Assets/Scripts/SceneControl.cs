@@ -17,6 +17,7 @@ public class SceneControl : MonoBehaviour
         gamePaused = false;
         currentScene = SceneManager.GetActiveScene();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gm.currentDone = false;
     }
 
     void Update()
@@ -48,6 +49,21 @@ public class SceneControl : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.5f);
         SceneManager.LoadScene("Transition");
     }
+
+    public void setSingle(string name)
+    {
+        StartCoroutine(LoadSingle(name));
+    }
+
+    IEnumerator LoadSingle(string name)
+    {
+        transitionAnimation.SetTrigger("fadeout");
+        gm.singleGame = true;
+        gm.gameTransition = name;
+        yield return new WaitForSecondsRealtime(1.5f);
+        SceneManager.LoadScene("Transition");
+    }
+
     public void StartGame()
     {
         gm.lifesLeft = gm.lifesMax;

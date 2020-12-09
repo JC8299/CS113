@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimerScript : MonoBehaviour
 {
     public bool timerRun;
-    public float totalTime;
-    public Text display;
 
+    private GameManager gm;
     private float currentTime;
     // Start is called before the first frame update
     void Start()
     {
-        currentTime = totalTime;
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        currentTime = gm.difficulty(SceneManager.GetActiveScene().name);
     }
 
     // Update is called once per frame
@@ -31,6 +32,7 @@ public class TimerScript : MonoBehaviour
                 Debug.Log("No more time");
                 currentTime = 0f;
                 timerRun = false;
+                gm.CurrentMinigameCompleted(false);
                 DisplayTime(currentTime);
             }
         }
@@ -41,6 +43,6 @@ public class TimerScript : MonoBehaviour
         float seconds = Mathf.FloorToInt(time % 60);
         float milliseconds = (time % 1) * 100;
 
-        display.text = string.Format("{0:00}:{1:00}", seconds, milliseconds);
+        transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = string.Format("{0:00}:{1:00}", seconds, milliseconds);
     }
 }

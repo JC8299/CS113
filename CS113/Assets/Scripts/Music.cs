@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class Music : MonoBehaviour
 {
+    public static Music instance {get; private set;}
     private AudioSource _audioSource;
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.Play();
+        if (instance == null)
+        {
+            DontDestroyOnLoad(transform.gameObject);
+            _audioSource = GetComponent<AudioSource>();
+            _audioSource.Play();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
     
     // Start is called before the first frame update

@@ -8,11 +8,13 @@ public class BasketballTeammate : MonoBehaviour
 
     private Transform teammates;
     private Transform blockers;
+    private GameManager gm;
     private int pass;
 
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         pass = UnityEngine.Random.Range(0,3);
         //Unity gets angry if I don't add a check for children
         if (transform.childCount > 2)
@@ -35,7 +37,11 @@ public class BasketballTeammate : MonoBehaviour
     {
         if (passed != pass)
         {
-            Debug.Log("fail");
+            gm.CurrentMinigameCompleted(false);
+        }
+        else
+        {
+            gm.CurrentMinigameCompleted(true);
         }
     }
 }

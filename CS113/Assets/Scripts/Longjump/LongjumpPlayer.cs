@@ -13,17 +13,22 @@ public class LongjumpPlayer : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
+    private GameManager gm;
     private bool win;
+    private bool secondaryCheck;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         inJumpZone = false;
         pastJumpZone = false;
         win = false;
+        secondaryCheck = true;
+        speed = gm.difficulty("Longjump");
         animator.SetBool("Running", true);
     }
 
@@ -37,9 +42,10 @@ public class LongjumpPlayer : MonoBehaviour
             animator.SetBool("Running", false);
             animator.SetTrigger("Fail");
             //trigger lose condition
-            if (!win)
+            if (!win && secondaryCheck)
             {
-
+                secondaryCheck = !secondaryCheck;
+                gm.CurrentMinigameCompleted(false);
             }
         }
     }
@@ -58,8 +64,7 @@ public class LongjumpPlayer : MonoBehaviour
             animator.SetBool("Running", false);
             animator.SetTrigger("Jump");
             rb.AddForce(transform.up * 5f, ForceMode2D.Impulse);
-            StartCoroutine(StopSpeed());
-            //trigger win condition
+            StartCoroutine(StopSpeed(true));
         }
         else 
         {
@@ -68,14 +73,14 @@ public class LongjumpPlayer : MonoBehaviour
             animator.SetBool("Running", false);
             animator.SetTrigger("Jump");
             rb.AddForce(transform.up * 5f, ForceMode2D.Impulse);
-            StartCoroutine(StopSpeed());
-            //trigger lose condition
+            StartCoroutine(StopSpeed(false));
         }
     }
 
-    IEnumerator StopSpeed()
+    IEnumerator StopSpeed(bool success)
     {
         yield return new WaitForSeconds(1f);
         speed = 0f;
+        gm.CurrentMinigameCompleted(success);
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public float speed;
+    private GameManager gm;
     Vector2 direction; //(x, y)
 
     Rigidbody2D rb;
@@ -14,6 +15,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         //direction = Vector2.one.normalized; //(1,1)
         //direction.x = UnityEngine.Random.Range(-1, 1);
 
@@ -49,12 +51,14 @@ public class Ball : MonoBehaviour
         else if (collision.gameObject.CompareTag("Goal"))
         {
             Debug.Log("Task Failed");
+            gm.CurrentMinigameCompleted(false);
             speed = 0;
         }
 
         else if (collision.gameObject.CompareTag("Paddle") || collision.gameObject.CompareTag("HorizontalWall"))
         {
             Debug.Log("Task Success!");
+            gm.CurrentMinigameCompleted(true);
             speed = 0;
         }
     }

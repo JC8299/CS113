@@ -10,10 +10,16 @@ public class SpeedShootTargetSpawn : MonoBehaviour
     public float spawnTimer;
     public int numberToSpawn;
     public bool doneSpawning = false;
+    public int targetsLeft;
+
+    private GameManager gm;
 
     // Start is called before the first frame update
     void Awake()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        targetsLeft = numberToSpawn;
+
         if (!doneSpawning)
         {
             doneSpawning = true;
@@ -39,6 +45,15 @@ public class SpeedShootTargetSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (targetsLeft == 0)
+        {
+            targetsLeft--;
+            gm.CurrentMinigameCompleted(true);
+        }
+    }
 
+    public void targetShot()
+    {
+        targetsLeft--;
     }
 }

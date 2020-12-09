@@ -8,6 +8,7 @@ public class SprintComputerPlayer : MonoBehaviour
     public float moveAccel;
     private Rigidbody2D rb;
     private Animator animator;
+    private GameManager gm;
     public bool bFinished;
 
     // Start is called before the first frame update
@@ -15,7 +16,9 @@ public class SprintComputerPlayer : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         bFinished = false;
+        maxSpeed = gm.difficulty("Sprinting");
     }
 
     // Update is called once per frame

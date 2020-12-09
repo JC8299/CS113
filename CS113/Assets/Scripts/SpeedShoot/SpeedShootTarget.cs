@@ -20,6 +20,7 @@ public class SpeedShootTarget : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        transform.parent.parent.gameObject.GetComponent<SpeedShootTargetSpawn>().targetShot();
         Destroy(gameObject);
     }
 
