@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public class SpeedShootTargetSpawn : MonoBehaviour
 {
@@ -11,13 +12,17 @@ public class SpeedShootTargetSpawn : MonoBehaviour
     public int numberToSpawn;
     public bool doneSpawning = false;
     public int targetsLeft;
+    public AudioClip shot;
+    public AudioClip breaking;
 
+    private AudioSource audioSource;
     private GameManager gm;
 
     // Start is called before the first frame update
     void Awake()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        audioSource = GetComponent<AudioSource>();
         targetsLeft = numberToSpawn;
 
         if (!doneSpawning)
@@ -54,6 +59,13 @@ public class SpeedShootTargetSpawn : MonoBehaviour
 
     public void targetShot()
     {
+        audioSource.PlayOneShot(breaking);
         targetsLeft--;
+    }
+
+    public void OnFire()
+    {
+        audioSource.PlayOneShot(shot, 0.5f);
+
     }
 }

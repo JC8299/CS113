@@ -41,6 +41,7 @@ public class SnowboardGate : MonoBehaviour
                 gates++;
                 if (gates >= 5)
                 {
+                    gates = 0;
                     gm.CurrentMinigameCompleted(true);
                 }
                 Destroy(gameObject);
@@ -49,6 +50,7 @@ public class SnowboardGate : MonoBehaviour
             {
                 if (gates < 5)
                 {
+                    gates = 0;
                     gm.CurrentMinigameCompleted(false);
                 }
                 Destroy(gameObject);

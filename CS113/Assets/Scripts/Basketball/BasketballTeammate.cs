@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BasketballTeammate : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class BasketballTeammate : MonoBehaviour
             teammates = transform.GetChild(0);
             blockers = transform.GetChild(1);
         
-            teammates.GetChild(pass).gameObject.GetComponent<SpriteRenderer>().sprite = passable;
+            teammates.GetChild(pass).gameObject.GetComponent<Image>().sprite = passable;
             blockers.GetChild(pass).gameObject.SetActive(false);
         }
     }

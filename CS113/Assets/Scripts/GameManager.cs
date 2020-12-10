@@ -64,15 +64,26 @@ public class GameManager : MonoBehaviour
             minigamesCompleted++;
             currentDone = true;
 
-            if (!success)
-            {
-                lifesLeft--;
-                if (lifesLeft <= 0)
-                {
-                    sc.SpecificScene("Gameover");
-                }
-            }
+            Time.timeScale = 0f;
+            StartCoroutine(StopForResult(success));
+        }
+    }
 
+    IEnumerator StopForResult(bool success)
+    {
+        sc.MinigameResult(success);
+        yield return new WaitForSecondsRealtime(1f);
+        if (!success)
+        {
+            lifesLeft--;
+        }
+
+        if (lifesLeft <= 0)
+        {
+            sc.SpecificScene("Gameover");
+        }
+        else
+        {
             string nextMinigame = minigamesList[Random.Range(0, minigamesList.Count)];
             while(nextMinigame == SceneManager.GetActiveScene().name)
             {
@@ -86,6 +97,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 singleGame = false;
+                minigamesCompleted = 0;
                 sc.SpecificScene("MainMenu");
             }
         }

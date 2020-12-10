@@ -10,8 +10,10 @@ public class Music : MonoBehaviour
     {
         if (instance == null)
         {
+            instance = this;
             DontDestroyOnLoad(transform.gameObject);
             _audioSource = GetComponent<AudioSource>();
+            _audioSource.ignoreListenerPause = true;
             _audioSource.Play();
         }
         else

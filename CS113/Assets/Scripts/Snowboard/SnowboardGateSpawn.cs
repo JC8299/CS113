@@ -32,7 +32,7 @@ public class SnowboardGateSpawn : MonoBehaviour
             {
                 backgroundTimer = backgroundCooldown;
                 GameObject sb = Instantiate(scrollBackground);
-                sb.transform.position = transform.GetChild(5).transform.position;
+                sb.transform.position = transform.GetChild(5).transform.position + new Vector3(0, 0, 4);
                 sb.transform.GetComponent<SnowboardBackground>().speed = setSpeed;
             }
             if (spawnTimer < 0f && spawnAmount > 0)
