@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
             {
                 singleGame = false;
                 minigamesCompleted = 0;
+                lifesLeft = lifesMax;
                 sc.SpecificScene("MainMenu");
             }
         }
