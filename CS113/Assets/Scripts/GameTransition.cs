@@ -27,7 +27,7 @@ public class GameTransition : MonoBehaviour
             case "Snowboard":
                 transform.GetChild(2).gameObject.SetActive(true);
                 break;
-            case "Soccergoalie":
+            case "Soccer Goalie":
                 transform.GetChild(3).gameObject.SetActive(true);
                 break;
             case "SpeedShoot":

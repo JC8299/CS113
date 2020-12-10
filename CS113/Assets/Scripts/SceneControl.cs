@@ -8,20 +8,36 @@ public class SceneControl : MonoBehaviour
 {
     public Animator transitionAnimation;
     public bool gamePaused;
+    public bool noPause;
 
     private GameManager gm;
     private Scene currentScene;
 
     void Start()
     {
-        gamePaused = false;
+        ResumeGame();
         currentScene = SceneManager.GetActiveScene();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gm.currentDone = false;
+        noPause = false;
     }
 
     void Update()
     {
 
+    }
+
+    public void MinigameResult(bool success)
+    {
+        noPause = true;
+        StartCoroutine(DisplayMinigameResult(success));
+    }
+
+    IEnumerator DisplayMinigameResult(bool success)
+    {
+        transitionAnimation.SetBool("success", success);
+        transitionAnimation.SetTrigger("done");
+        yield return 0;
     }
 
     public void SpecificScene(string name)
@@ -48,6 +64,21 @@ public class SceneControl : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.5f);
         SceneManager.LoadScene("Transition");
     }
+
+    public void setSingle(string name)
+    {
+        StartCoroutine(LoadSingle(name));
+    }
+
+    IEnumerator LoadSingle(string name)
+    {
+        transitionAnimation.SetTrigger("fadeout");
+        gm.singleGame = true;
+        gm.gameTransition = name;
+        yield return new WaitForSecondsRealtime(1.5f);
+        SceneManager.LoadScene("Transition");
+    }
+
     public void StartGame()
     {
         gm.lifesLeft = gm.lifesMax;
@@ -59,12 +90,12 @@ public class SceneControl : MonoBehaviour
 
     public void OnPause()
     {
-        if (!gamePaused && !(currentScene.name == "MainMenu" || currentScene.name == "GameSelect"))
+        if (!gamePaused && !(currentScene.name == "MainMenu" || currentScene.name == "GameSelect") && !noPause)
         {
             gamePaused = true;
             PauseGame();
         }
-        else if (!(currentScene.name == "MainMenu" || currentScene.name == "GameSelect"))
+        else if (gamePaused && !(currentScene.name == "MainMenu" || currentScene.name == "GameSelect"))
         {
             ResumeGame();
         }
@@ -73,6 +104,7 @@ public class SceneControl : MonoBehaviour
     private void PauseGame()
     {
         Time.timeScale = 0f;
+        AudioListener.pause = true;
         StartCoroutine(Pause());
     }
 
@@ -92,6 +124,7 @@ public class SceneControl : MonoBehaviour
         yield return new WaitForSecondsRealtime(0f);
         transform.GetChild(1).gameObject.SetActive(false);
         Time.timeScale = 1f;
+        AudioListener.pause = false;
         gamePaused = false;
     }
 

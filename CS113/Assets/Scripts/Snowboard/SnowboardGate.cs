@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class SnowboardGate : MonoBehaviour
 {
+    public static int gates;
     public bool passed;
     public float speed;
 
     private Rigidbody2D rb;
+    private GameManager gm;
     void Awake()
     {
         passed = false;
         rb = transform.GetComponent<Rigidbody2D>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -35,11 +38,21 @@ public class SnowboardGate : MonoBehaviour
         {
             if (passed)
             {
+                gates++;
+                if (gates >= 5)
+                {
+                    gates = 0;
+                    gm.CurrentMinigameCompleted(true);
+                }
                 Destroy(gameObject);
             }
             else
             {
-                Debug.Log("Failed gate");
+                if (gates < 5)
+                {
+                    gates = 0;
+                    gm.CurrentMinigameCompleted(false);
+                }
                 Destroy(gameObject);
             }
         }

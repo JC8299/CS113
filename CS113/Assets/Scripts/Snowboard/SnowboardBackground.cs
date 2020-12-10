@@ -23,6 +23,7 @@ public class SnowboardBackground : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = new Vector2(-speed, 0);
+        transform.position -= new Vector3(0, 0, 0.01f);
     }
 
     void OnTriggerEnter2D(Collider2D collide)

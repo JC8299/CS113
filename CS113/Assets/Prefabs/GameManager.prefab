@@ -46,7 +46,18 @@ MonoBehaviour:
   sc: {fileID: 0}
   lifesMax: 3
   lifesLeft: 3
+  timerMaximum: 5
+  timerMinimum: 1.75
+  longjumpSpeedMax: 80
+  longjumpSpeedMin: 20
+  snowboardSpeedMax: 30
+  snowboardSpeedMin: 10
+  soccerSpeedMax: 12
+  soccerSpeedMin: 6
+  sprintingSpeedMax: 35
+  sprintingSpeedMin: 30
   gameTransition: 
+  singleGame: 0
   minigamesCompleted: 0
   minigamesList:
   - Basketball
@@ -55,3 +66,4 @@ MonoBehaviour:
   - SpeedShoot
   - Sprinting
   - Soccer Goalie
+  currentDone: 0

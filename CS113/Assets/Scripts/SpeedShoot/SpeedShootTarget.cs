@@ -9,7 +9,7 @@ public class SpeedShootTarget : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,6 +20,7 @@ public class SpeedShootTarget : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        transform.parent.parent.gameObject.GetComponent<SpeedShootTargetSpawn>().targetShot();
         Destroy(gameObject);
     }
 
